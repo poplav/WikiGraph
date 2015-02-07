@@ -11,14 +11,15 @@ cors = CORS(app)
 @app.route('/', methods = ['GET'])
 def index():
     graphAnalytics = GraphAnalytics()
-    db=MySQLdb.connect(host="localhost",user="root", passwd="",db="graph")
-    #printDB(db)
+    db=MySQLdb.connect(host="localhost",user="root", passwd="",db="WikiGraph")
+    #graphAnalytics.printDB(db)
     #print getOutDegree(db, "sourceTest")
     #print getInDegree(db, "sourceTest")
     #print getNeighbors(db, "sourceTest")
-    neighbors = graphAnalytics.getNeighbors(db, "sourceTest")
+    neighbors = graphAnalytics.getNeighbors(db, "sourceTest1")
     db.close()
     return jsonify(message=neighbors)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    #winreg error on debug=true in python 2.7
+    app.run(debug=False)
