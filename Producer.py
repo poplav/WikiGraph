@@ -16,11 +16,11 @@ class Producer:
         
     def produceLinks(self, page):
         self.done = False
-        PP = PageParser()
+        PP = PageParser(self.channel)
         links = PP.getLinks(page)
-        for i in links:
-            self.channel.basic_publish(exchange='', routing_key='graph', body=i)
-            print "[x] Sent: " + i
+        #for i in links:
+        #    self.channel.basic_publish(exchange='', routing_key='graph', body=i)
+        #    print "[x] Sent: " + i
         self.done = True
         return
     

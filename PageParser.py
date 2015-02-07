@@ -4,7 +4,10 @@ import urllib2
 from sets import Set
 
 class PageParser:
-    
+
+    def __init__(self, channel):
+        self.channel = channel
+
     def getLinks(self, page):
         goodLinks = Set([])
         badLinks = Set([])
@@ -23,15 +26,22 @@ class PageParser:
                 pageLinks.append(html[indexLocation+12:titleLocation-2])
             except:
                 break
-            
+        
+        print "pageLinks size = " + str(len(pageLinks))
+        count = 0
         for link in pageLinks:
             completeUrl = "http://en.wikipedia.org/wiki/" + link
             if completeUrl in goodLinks or completeUrl in badLinks:
                 continue
             if self.validUrl(completeUrl):
                 goodLinks.add(completeUrl)
+                self.channel.basic_publish(exchange='', routing_key='graph', body=page + " -> " +link)
+                print "[x] Sent: " + page + " -> " +link
             else:
                 badLinks.add(completeUrl)
+            count+=1
+            print count
+            
         
         print "Good Link size = " + str(len(goodLinks))
         print "Bad Link size = " + str(len(badLinks))
@@ -48,5 +58,5 @@ class PageParser:
             #print(e.args)
             return False
 
-PP = PageParser()
-print PP.getLinks("United_States")
+#PP = PageParser()
+#print PP.getLinks("United_States")

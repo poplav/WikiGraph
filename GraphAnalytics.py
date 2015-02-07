@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
-import MySQLdb
+#import MySQLdb
+from PageParser import PageParser
 
 class GraphAnalytics:  
 
