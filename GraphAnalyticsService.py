@@ -32,6 +32,20 @@ def getDB():
         results.append(dict(zip(columns, row)))
     return json.dumps(results)
 
+@app.route('/getPrunedDB', methods = ['GET'])
+def getPrunedDB():
+    graphAnalytics = GraphAnalytics()
+    db=MySQLdb.connect(host="localhost",user="root", passwd="",db="WikiGraph")
+    cursor=db.cursor()
+    cursor.execute("select * from wikiGraph");
+    columns = [column[0] for column in cursor.description]
+    results = []
+    for row in cursor.fetchall():
+        outDegree = max(graphAnalytics.getOutDegree(db, row[0]), graphAnalytics.getOutDegree(db, row[0]));
+        if(outDegree > 1):
+            results.append(dict(zip(columns, row)))
+    return json.dumps(results)
+
 if __name__ == '__main__':
     #winreg error on debug=true in python 2.7
     app.run(debug=False)
