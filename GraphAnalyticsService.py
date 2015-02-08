@@ -4,6 +4,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 import MySQLdb
 from GraphAnalytics import GraphAnalytics
+import json
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -19,6 +20,17 @@ def index():
     neighbors = graphAnalytics.getNeighbors(db, "sourceTest1")
     db.close()
     return jsonify(message=neighbors)
+
+@app.route('/getDB', methods = ['GET'])
+def getDB():
+    db=MySQLdb.connect(host="localhost",user="root", passwd="",db="WikiGraph")
+    cursor=db.cursor()
+    cursor.execute("select * from wikiGraph");
+    columns = [column[0] for column in cursor.description]
+    results = []
+    for row in cursor.fetchall():
+        results.append(dict(zip(columns, row)))
+    return json.dumps(results)
 
 if __name__ == '__main__':
     #winreg error on debug=true in python 2.7
