@@ -11,8 +11,11 @@ class PageParser:
     def getLinks(self, page):
         goodLinks = Set([])
         badLinks = Set([])
-        
-        response = urllib2.urlopen("http://en.wikipedia.org/wiki/" + page)
+
+        fullURL = "http://en.wikipedia.org/wiki/" + page
+        print "fullURL = " + fullURL
+
+        response = urllib2.urlopen(fullURL)
         html = response.read()
         wikiLink = "href=\"/wiki/"
         

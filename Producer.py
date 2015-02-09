@@ -24,5 +24,5 @@ class Producer:
         self.done = True
         return
     
-producer = Producer()
-producer.produceLinks("United_States")
+#producer = Producer()
+#producer.produceLinks("United_States")
