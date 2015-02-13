@@ -8,8 +8,11 @@ Testing graph service with d3, sample screen shots:
 ![Alt text](/screenshots/graphTest.png?raw=true "Init Graph Test")
 
 Provide a central view of a vertex out to some depth with links to the top N neighbors where the neighbors are sorted by out degree
+
 def getCentralGraph(self, db, vertex, topN, depth):
+
 print graphAnalytics.getCentralGraph(db, "'Amtrak'", 2, 1)
+
 depth = 1
 vertex = 'Amtrak'
 ["'Canada'", "'South_Dakota'"]
