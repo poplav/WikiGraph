@@ -19,3 +19,10 @@ insert into wikiGraph values("United_States", "United_States");
 select * from wikiGraph;
 
 select count(*) from wikiGraph;
+
+/* Get the size in MB of the table wikiGraph */
+SELECT table_name AS "wikiGraph",
+round(((data_length + index_length) / 1024 / 1024), 2) "Size in MB"
+FROM information_schema.TABLES
+WHERE table_schema = "WikiGraph"
+ AND table_name = "wikiGraph";
