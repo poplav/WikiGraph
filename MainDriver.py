@@ -43,7 +43,7 @@ class ProducerThread(threading.Thread):
         return random.choice(destinationList)[1:-1]
 
 
-mainDriver = MainDriver(5)
+mainDriver = MainDriver(10)
 #db=MySQLdb.connect(host="localhost",user="root", passwd="",db="WikiGraph")
 #print mainDriver.getRandomPage(db)
 mainDriver.run()

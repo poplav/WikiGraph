@@ -42,8 +42,10 @@ def getPrunedDB():
     results = []
     for row in cursor.fetchall():
         outDegree = min(graphAnalytics.getOutDegree(db, row[0]), graphAnalytics.getOutDegree(db, row[1]));
+        if outDegree > 500:
+            print row[1] + str(outDegree)
         #update to percentile like top 5% instead of a hard coded number for min outDegree
-        if(outDegree > 1):
+        if(outDegree > 500):
             results.append(dict(zip(columns, row)))
     return json.dumps(results)
 
