@@ -13,7 +13,7 @@ def getCentralGraph(self, db, vertex, topN, depth):
 
 print graphAnalytics.getCentralGraph(db, "'Amtrak'", 2, 1)
 
-depth = 1
+depth = 1  <br/>
 vertex = 'Amtrak'
 ["'Canada'", "'South_Dakota'"]
 depth = 0
