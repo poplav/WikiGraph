@@ -4,7 +4,7 @@ import threading
 
 import MySQLdb
 
-from scraper import Producer
+from src.scraper.Producer import Producer
 
 
 class MainDriver:

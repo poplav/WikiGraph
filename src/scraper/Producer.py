@@ -2,7 +2,7 @@
 
 import pika
 
-from scraper import PageParser
+from src.scraper.PageParser import PageParser
 
 
 class Producer:
