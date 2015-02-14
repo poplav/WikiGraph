@@ -1,10 +1,9 @@
 #!/usr/bin/python
 
-import MySQLdb
 import operator
-from PageParser import PageParser
 
-class GraphAnalytics:  
+
+class GraphAnalytics:
 
     def printDB(self, db):
         print "Printing DB:"
@@ -67,8 +66,8 @@ class GraphAnalytics:
                     graph.append(n)
         return graph
 
-graphAnalytics = GraphAnalytics()
-db=MySQLdb.connect(host="localhost",user="root", passwd="",db="WikiGraph")
+#graphAnalytics = GraphAnalytics()
+#db=MySQLdb.connect(host="localhost",user="root", passwd="",db="WikiGraph")
 #print graphAnalytics.getTopLinks(db, "'United_States'", 5)
 #print graphAnalytics.getCentralGraph(db, "'United_States'", 2, 1)
-print graphAnalytics.getCentralGraph(db, "'Amtrak'", 2, 1)
+#print graphAnalytics.getCentralGraph(db, "'Amtrak'", 2, 1)

@@ -1,8 +1,11 @@
 #!/usr/bin/python
-import MySQLdb
 import random
 import threading
-from Producer import Producer
+
+import MySQLdb
+
+from scraper import Producer
+
 
 class MainDriver:
 

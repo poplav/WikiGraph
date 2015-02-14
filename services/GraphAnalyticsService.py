@@ -1,10 +1,13 @@
 #!/usr/bin/python
 
+import json
+
 from flask import Flask, jsonify
 from flask_cors import CORS
 import MySQLdb
-from GraphAnalytics import GraphAnalytics
-import json
+
+from Analytics import GraphAnalytics
+
 
 app = Flask(__name__)
 cors = CORS(app)

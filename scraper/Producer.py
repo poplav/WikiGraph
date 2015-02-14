@@ -1,7 +1,9 @@
 #!/usr/bin/python
 
 import pika
-from PageParser import PageParser
+
+from scraper import PageParser
+
 
 class Producer:
     
