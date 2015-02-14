@@ -6,7 +6,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 import MySQLdb
 
-from src.analytics import GraphAnalytics
+from src.main.analytics import GraphAnalytics
 
 
 app = Flask(__name__)
