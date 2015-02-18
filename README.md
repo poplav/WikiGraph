@@ -5,7 +5,9 @@ Populate wiki graph in mysql using RabbitMQ and run some queries on it for now
 
 Testing graph service with d3, sample screen shots:
 ![Alt text](/screenshots/centralGraphAmtrak.png?raw=true "Central Graph of Amtrak")
+---
 ![Alt text](/screenshots/initUSACrawl.png?raw=true "Init USA crawl Test")
+---
 ![Alt text](/screenshots/graphTest.png?raw=true "Init Graph Test")
 
 Provide a central view of a vertex out to some depth with links to the top N neighbors where the neighbors are sorted by out degree<br/>
