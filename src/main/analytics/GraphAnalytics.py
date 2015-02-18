@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import operator
-
+import MySQLdb
 
 class GraphAnalytics:
 
@@ -43,28 +43,57 @@ class GraphAnalytics:
             neighborOutDegreeDict[n] = self.getOutDegree(db, n)
         #print neighborOutDegreeDict
         sortedNeighborOutDegreeDict = sorted(neighborOutDegreeDict.items(), key=operator.itemgetter(1))
+        #print sortedNeighborOutDegreeDict
         sortedNeighborOutDegreeDict = sortedNeighborOutDegreeDict[-topN:]
         #sortedNeighborOutDegreeDict = reversed(sortedNeighborOutDegreeDict)
         #print sortedNeighborOutDegreeDict
         topNLinks = [i[0] for i in sortedNeighborOutDegreeDict]
         return list(reversed(topNLinks))
 
-    def getCentralGraph(self, db, vertex, topN, depth):
+    def getTopLinksNotInPrevLinks(self, db, vertex, topN, prevLinks):
+        neighbors = self.getNeighbors(db, vertex)
+        #print neighbors
+        print prevLinks
+        neighborOutDegreeDict = {}
+        for n in neighbors:
+            found = False
+            for i in prevLinks:
+                if n == i:
+                    found = True
+                    print "found!"
+                    break
+            if not found:
+                neighborOutDegreeDict[n] = self.getOutDegree(db, n)
+        #print neighborOutDegreeDict
+        sortedNeighborOutDegreeDict = sorted(neighborOutDegreeDict.items(), key=operator.itemgetter(1))
+        #print sortedNeighborOutDegreeDict
+        sortedNeighborOutDegreeDict = sortedNeighborOutDegreeDict[-topN:]
+        #sortedNeighborOutDegreeDict = reversed(sortedNeighborOutDegreeDict)
+        #print sortedNeighborOutDegreeDict
+        topNLinks = [i[0] for i in sortedNeighborOutDegreeDict]
+        return list(reversed(topNLinks))
+
+    def getCentralGraph(self, db, vertex, topN, depth, prevLinks):
         graph = []
         print "depth = " + str(depth)
         print "vertex = " + vertex
-        tempTopLiks = self.getTopLinks(db, vertex, topN)
-        print tempTopLiks
-        for i in tempTopLiks:
+        #tempTopLinks = self.getTopLinks(db, vertex, topN)
+        tempTopLinks = self.getTopLinksNotInPrevLinks(db, vertex, topN, prevLinks)
+        prevLinks += tempTopLinks
+        #print prevLinks
+        print tempTopLinks
+        for i in tempTopLinks:
             row = [vertex, i]
             #row.append(vertex)
             #row.append(i)
             graph.append(row)
             if depth > 0:
-                nextGraph = self.getCentralGraph(db, i, topN, depth-1)
+                nextGraph = self.getCentralGraph(db, i, topN, depth-1, prevLinks)
                 for n in nextGraph:
                     graph.append(n)
         return graph
+
+    #get out degree distribution
 
 #graphAnalytics = GraphAnalytics()
 #db=MySQLdb.connect(host="localhost",user="root", passwd="",db="WikiGraph")

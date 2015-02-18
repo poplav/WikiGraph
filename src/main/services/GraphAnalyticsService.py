@@ -6,7 +6,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 import MySQLdb
 
-from src.main.analytics import GraphAnalytics
+from src.main.analytics.GraphAnalytics import GraphAnalytics
 
 
 app = Flask(__name__)
@@ -50,6 +50,22 @@ def getPrunedDB():
         #update to percentile like top 5% instead of a hard coded number for min outDegree
         if(outDegree > 500):
             results.append(dict(zip(columns, row)))
+    return json.dumps(results)
+
+#http://localhost:5000/getCentralGraph/'Amtrak'/topN/2/depth/1
+@app.route('/getCentralGraph/<vertex>/topN/<int:topN>/depth/<int:depth>', methods = ['GET'])
+def getCentralGraph(vertex, topN, depth):
+    graphAnalytics = GraphAnalytics()
+    db=MySQLdb.connect(host="localhost",user="root", passwd="",db="WikiGraph")
+    graph = graphAnalytics.getCentralGraph(db, vertex, topN, depth, [vertex])
+    cursor=db.cursor()
+    cursor.execute("select * from wikiGraph limit 1");
+    columns = [column[0] for column in cursor.description]
+    print columns
+    results = []
+    for row in graph:
+        results.append(dict(zip(columns, row)))
+    print results
     return json.dumps(results)
 
 if __name__ == '__main__':
