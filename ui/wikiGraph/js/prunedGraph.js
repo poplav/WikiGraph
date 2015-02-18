@@ -1,16 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Force based label placement</title>
-		<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.6.0"></script>
-		<script type="text/javascript" src="http://mbostock.github.com/d3/d3.layout.js?2.6.0"></script>
-		<script type="text/javascript" src="http://mbostock.github.com/d3/d3.geom.js?2.6.0"></script>
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-	</head>
-	<body>
-
-    <script type="text/javascript">
         function contains(a, obj)
         {
             for (var i = 0; i < a.length; i++) {
@@ -50,8 +37,8 @@
 
             return graph;
         }
-    </script>
-<script type="text/javascript" charset="utf-8">
+	function doD3()
+	{
             // Get the data
             d3.json("http://localhost:5000/getPrunedDB", function(data)
             {
@@ -75,7 +62,7 @@
                         console.log(s + " - " + graph[i][j]);
                 }
 
-                var w = 1260, h = 700;
+                var w = 1460, h = 600;
 
                 var labelDistance = 0;
 
@@ -202,7 +189,4 @@
 
                 });
             });
-
-		</script>
-	</body>
-</html>
+	}
