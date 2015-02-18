@@ -14,7 +14,6 @@ Provide a central view of a vertex out to some depth with links to the top N nei
 def getCentralGraph(self, db, vertex, topN, depth):<br/>
 print graphAnalytics.getCentralGraph(db, "'Amtrak'", 2, 1)
 
----
 depth = 1  <br/>
 vertex = 'Amtrak' <br/>
 ["'Canada'", "'South_Dakota'"]<br/>
