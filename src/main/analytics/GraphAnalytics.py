@@ -93,10 +93,24 @@ class GraphAnalytics:
                     graph.append(n)
         return graph
 
-    #get out degree distribution
+    def getOutDegreeDistribution(self, db):
+        vertices = []
+        verticesCountDict = {}
+        c = db.cursor()
+        c.execute("select distinct source from wikiGraph")
+        dict = c.fetchall()
+        for i in dict:
+            vertices.append(i[0])
+        #print vertices
+        #print len(vertices)
+        for i in vertices:
+            verticesCountDict[i] = self.getOutDegree(db, i)
+        #print len(verticesCountDict)
+        return verticesCountDict
 
 #graphAnalytics = GraphAnalytics()
 #db=MySQLdb.connect(host="localhost",user="root", passwd="",db="WikiGraph")
+#print graphAnalytics.getOutDegreeDistribution(db)
 #print graphAnalytics.getTopLinks(db, "'United_States'", 5)
 #print graphAnalytics.getCentralGraph(db, "'United_States'", 2, 1)
 #print graphAnalytics.getCentralGraph(db, "'Amtrak'", 2, 1)
