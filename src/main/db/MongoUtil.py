@@ -19,7 +19,7 @@ class MongoUtil:
         vertex = {"name":vertexName, "neighbors":[]}
         self.collection.insert(vertex)
 
-    #***FIX***Note efficient and should be unique neighbors
+    #***FIX***Not efficient and should be unique neighbors
     def addNeighbor(self, vertexName, neighborName):
         id = mu.getVertexByName(vertexName)["_id"]
         neighborCursor = mu.getVertexByName(vertexName)["neighbors"]
@@ -30,6 +30,9 @@ class MongoUtil:
         neighborDict = {}
         neighborDict["neighbors"] = neighborList
         mu.updateNeighbors(id, neighborDict)
+
+    def getDegree(self, vertexName):
+        return len(self.getVertexByName(vertexName)["neighbors"])
 
     def updateNeighbors(self, id, neighborList):
         self.collection.update({"_id":id}, {"$set":neighborList}, upsert=False)
@@ -47,5 +50,7 @@ mu.removeAllDocuments()
 #mu.createUniqueIndex()
 mu.insertVertex(usa)
 mu.printCollection()
+print mu.getDegree(usa)
 mu.addNeighbor(usa, "a")
 mu.printCollection()
+print mu.getDegree(usa)
