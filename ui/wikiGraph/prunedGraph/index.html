@@ -13,7 +13,7 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/starter-template/starter-template.css" rel="stylesheet">
+    <link href="jumbotron-narrow.css" rel="stylesheet">
 
    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.6.0"></script>
    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.layout.js?2.6.0"></script>
@@ -24,36 +24,24 @@
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/wikiGraph">WikiGraph</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/wikiGraph/prunedGraph">Pruned Graph</a></li>
-            <li><a href="/wikiGraph/centralGraph">Central Graph</a></li>
-            <li><a href="/wikiGraph/graphAnalytics">Graph Analytics</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
     <div class="container">
-
-      <div class="starter-template">
-        <h1>Pruned Graph</h1>
-         <script type="text/javascript">
-		doD3();
- 	</script>
-      </div>
-
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation"><a href="/wikiGraph">Home</a></li>
+                    <li role="presentation" class="active"><a href="/wikiGraph/prunedGraph">Pruned Graph</a></li>
+                    <li role="presentation"><a href="/wikiGraph/centralGraph">Central Graph</a></li>
+                    <li role="presentation"><a href="/wikiGraph/graphAnalytics">Graph Analytics</a></li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">WikiGraph</h3>
+        </div>
+        <center>
+            <h1>Pruned Graph</h1>
+             <script type="text/javascript">
+                doD3();
+            </script>
+        </center>
     </div><!-- /.container -->
 
 

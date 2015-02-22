@@ -13,38 +13,37 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/starter-template/starter-template.css" rel="stylesheet">
+    <link href="jumbotron-narrow.css" rel="stylesheet">
 
   </head>
 
   <body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/wikiGraph">wikiGraph</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/wikiGraph/prunedGraph">Pruned Graph</a></li>
-            <li><a href="/wikiGraph/centralGraph">Central Graph</a></li>
-            <li><a href="/wikiGraph/graphAnalytics">Graph Analytics</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
     <div class="container">
-
-      <div class="starter-template">
-        <p>Home of wiki graph prohject<br>Click the tabs to navigate...</p>
-      </div>
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="/wikiGraph">Home</a></li>
+                    <li role="presentation"><a href="/wikiGraph/prunedGraph">Pruned Graph</a></li>
+                    <li role="presentation"><a href="/wikiGraph/centralGraph">Central Graph</a></li>
+                    <li role="presentation"><a href="/wikiGraph/graphAnalytics">Graph Analytics</a></li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">WikiGraph</h3>
+        </div>
+        <center>
+            <h1>
+                This project explores wikipedia!
+            </h1>
+        </center>
+        <left>
+            <h4>
+                <ul>
+                    <li>You can get a pruned graph with a view of the top X vertices only connected</li>
+                    <li>A central view of a vertex out to some depth where each level has a variable number of connections</li>
+                    <li>Graph analytics like out degree distribution etc...</li>
+                </ul>
+            </h4>
+        </left>
 
     </div><!-- /.container -->
 
