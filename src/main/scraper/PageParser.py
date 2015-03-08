@@ -21,7 +21,7 @@ class PageParser:
         
         indexLocation = html.index(wikiLink)
         pageLinks = []
-        while 1==1:
+        while True:
             try:
                 indexLocation = html.index(wikiLink, indexLocation+5)
                 titleLocation = html.index("title", indexLocation)
