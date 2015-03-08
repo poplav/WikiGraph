@@ -16,26 +16,37 @@ class MongoUtil:
         self.collection.remove({})
 
     def insertVertex(self, vertexName):
-        vertex = {"name":vertexName, "neighbors":[]}
-        self.collection.insert(vertex)
+        try:
+            vertex = {"name":vertexName, "neighbors":[]}
+            self.collection.insert(vertex)
+        except:
+            print "Vertex " + vertexName + " already exists"
 
-    #***FIX***Not efficient and should be unique neighbors
     def addNeighbor(self, vertexName, neighborName):
         id = mu.getVertexByName(vertexName)["_id"]
-        neighborCursor = mu.getVertexByName(vertexName)["neighbors"]
-        neighborList = []
-        for i in neighborCursor:
-            neighborList.append(i)
-        neighborList.append(neighborName)
         neighborDict = {}
-        neighborDict["neighbors"] = neighborList
-        mu.updateNeighbors(id, neighborDict)
+        neighborDict["neighbors"] = neighborName
+        self.collection.update({"_id":id}, {"$addToSet":neighborDict}, upsert=True)
+
+    # #***FIX***Not efficient and should be unique neighbors
+    # def addNeighbor(self, vertexName, neighborName):
+    #     id = mu.getVertexByName(vertexName)["_id"]
+    #     neighborCursor = mu.getVertexByName(vertexName)["neighbors"]
+    #     neighborList = []
+    #     for i in neighborCursor:
+    #         if neighborName == i:
+    #             return
+    #         neighborList.append(i)
+    #     neighborList.append(neighborName)
+    #     neighborDict = {}
+    #     neighborDict["neighbors"] = neighborList
+    #     mu.updateNeighbors(id, neighborDict)
+    #
+    # def updateNeighbors(self, id, neighborList):
+    #     self.collection.update({"_id":id}, {"$set":neighborList}, upsert=False)
 
     def getDegree(self, vertexName):
         return len(self.getVertexByName(vertexName)["neighbors"])
-
-    def updateNeighbors(self, id, neighborList):
-        self.collection.update({"_id":id}, {"$set":neighborList}, upsert=False)
 
     def getVertexByName(self, vertexName):
         return self.collection.find_one({"name":vertexName})
@@ -52,7 +63,8 @@ mu.insertVertex(usa)
 mu.printCollection()
 print mu.getDegree(usa)
 mu.addNeighbor(usa, "a")
+mu.addNeighbor(usa, "a")
 mu.printCollection()
 print mu.getDegree(usa)
-#mu.insertVertex(usa)
+mu.insertVertex(usa)
 #print mu.getDegree(usa)
