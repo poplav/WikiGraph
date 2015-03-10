@@ -49,7 +49,7 @@ class MongoUtil(DBUtil):
     # def updateNeighbors(self, id, neighborList):
     #     self.collection.update({"_id":id}, {"$set":neighborList}, upsert=False)
 
-    def getDegree(self, vertexName):
+    def getOutDegree(self, vertexName):
         return len(self.getVertexByName(vertexName)["neighbors"])
 
     def getNeighbors(self, vertexName):
@@ -68,11 +68,11 @@ mu.removeAllDocuments()
 #mu.createUniqueIndex()
 mu.insertVertex(usa)
 mu.printCollection()
-print mu.getDegree(usa)
+print mu.getOutDegree(usa)
 mu.addNeighbor(usa, "a")
 mu.addNeighbor(usa, "a")
 mu.printCollection()
-print mu.getDegree(usa)
+print mu.getOutDegree(usa)
 mu.insertVertex(usa)
 #print mu.getDegree(usa)
 print mu.getNeighbors(usa)
