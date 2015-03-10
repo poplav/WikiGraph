@@ -20,3 +20,12 @@ class MySQLUtil(DBUtil):
         for i in dict:
             neighborList.append(i[0])
         return neighborList
+
+    def getOutDegree(self, vertexName):
+        return
+
+    def addNeighbor(self, vertexName, neighborName):
+        return
+
+    def insertVertex(self, vertexName):
+        return

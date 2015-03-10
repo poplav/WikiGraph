@@ -63,20 +63,19 @@ class MongoUtil(DBUtil):
             print i
 
 mu = MongoUtil()
-usa = "United_States"
-mu.removeAllDocuments()
+usa = "'United_States'"
+#mu.removeAllDocuments()
 #mu.createUniqueIndex()
 mu.insertVertex(usa)
-mu.printCollection()
+#mu.printCollection()
 print mu.getOutDegree(usa)
 mu.addNeighbor(usa, "a")
 mu.addNeighbor(usa, "a")
-mu.printCollection()
+#mu.printCollection()
 print mu.getOutDegree(usa)
 mu.insertVertex(usa)
-#print mu.getDegree(usa)
 print mu.getNeighbors(usa)
-
-dbUtil = MongoUtil()
-dbUtil.initDB()
-print dbUtil.getNeighbors(usa)
+#
+# dbUtil = MongoUtil()
+# dbUtil.initDB()
+# print dbUtil.getNeighbors(usa)
